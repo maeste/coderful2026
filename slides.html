@@ -297,6 +297,21 @@
     background: rgba(0,0,0,.55); padding: 8px 16px; border-radius: 6px; letter-spacing: .02em;
   }
 
+  /* ---------- story photo reveal ---------- */
+  .photo-stage { position: relative; flex: 1; min-height: 0; }
+  .snap {
+    position: absolute; background: #fff; padding: 16px 16px 54px;
+    border-radius: 3px; border: 1px solid var(--line);
+    box-shadow: 0 34px 70px rgba(30,18,63,.32), 0 10px 22px rgba(30,18,63,.16);
+  }
+  .snap img { display: block; border-radius: 2px; object-fit: cover; background: var(--paper-3); }
+  .snap .cap {
+    position: absolute; left: 16px; right: 16px; bottom: 13px; text-align: center;
+    font-family: 'Rubik', sans-serif; font-weight: 400; font-size: 30px; color: var(--ink);
+    letter-spacing: .005em; margin: 0;
+  }
+  .snap .cap b { color: var(--magenta); font-weight: 600; }
+
   /* misc helpers */
   .lead { font-size: var(--type-lead); line-height: 1.3; color: var(--indigo); max-width: 1400px; }
   section.dark .lead { color: #fff; }
@@ -457,13 +472,72 @@
         </div>
       </div>
       <div class="lesson">
-        <span class="lab">Voce narrante</span>
         <span class="txt">A pranzo della domenica <b>non</b> era affatto pronto.</span>
       </div>
     </div>
   </section>
 
-  <!-- 06 — Il Viaggio dell'Hardware -->
+  <!-- 06a — Viaggio Hardware: foto 1 -->
+  <section class="s tint" data-label="Il robot zoppo">
+    <div class="hd">
+      <h2 class="title">Il Viaggio dell'Hardware</h2>
+      <p class="dek">Sorprese di assemblaggio a cui nessun tutorial ti prepara</p>
+    </div>
+    <div class="body">
+      <div class="photo-stage">
+        <figure class="snap" style="left:250px;top:8px;transform:rotate(-5deg);z-index:1">
+          <img src="assets/il%20robot%20zoppo.jpg" alt="Due bracci robotici stampati in 3D, uno bianco e uno nero" width="315" height="560">
+          <figcaption class="cap">Il robot <b>zoppo</b></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06b — Viaggio Hardware: foto 1 + 2 -->
+  <section class="s tint" data-label="La corruzione">
+    <div class="hd">
+      <h2 class="title">Il Viaggio dell'Hardware</h2>
+      <p class="dek">Sorprese di assemblaggio a cui nessun tutorial ti prepara</p>
+    </div>
+    <div class="body">
+      <div class="photo-stage">
+        <figure class="snap" style="left:250px;top:8px;transform:rotate(-5deg);z-index:1">
+          <img src="assets/il%20robot%20zoppo.jpg" alt="Due bracci robotici stampati in 3D, uno bianco e uno nero" width="315" height="560">
+          <figcaption class="cap">Il robot <b>zoppo</b></figcaption>
+        </figure>
+        <figure class="snap" style="left:555px;top:0;transform:rotate(3deg);z-index:2">
+          <img src="assets/la%20corruzione.jpg" alt="Screenshot di chat: stampa 3D del pezzo in cambio di una focaccia" width="259" height="560">
+          <figcaption class="cap">La <b>corruzione</b></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06c — Viaggio Hardware: foto 1 + 2 + 3 -->
+  <section class="s tint" data-label="Il pezzo mancante">
+    <div class="hd">
+      <h2 class="title">Il Viaggio dell'Hardware</h2>
+      <p class="dek">Sorprese di assemblaggio a cui nessun tutorial ti prepara</p>
+    </div>
+    <div class="body">
+      <div class="photo-stage">
+        <figure class="snap" style="left:250px;top:8px;transform:rotate(-5deg);z-index:1">
+          <img src="assets/il%20robot%20zoppo.jpg" alt="Due bracci robotici stampati in 3D, uno bianco e uno nero" width="315" height="560">
+          <figcaption class="cap">Il robot <b>zoppo</b></figcaption>
+        </figure>
+        <figure class="snap" style="left:555px;top:0;transform:rotate(3deg);z-index:2">
+          <img src="assets/la%20corruzione.jpg" alt="Screenshot di chat: stampa 3D del pezzo in cambio di una focaccia" width="259" height="560">
+          <figcaption class="cap">La <b>corruzione</b></figcaption>
+        </figure>
+        <figure class="snap" style="left:815px;top:210px;transform:rotate(-2.5deg);z-index:3">
+          <img src="assets/pezzo%20mancante.jpg" alt="Pezzo stampato in 3D tenuto in mano" width="587" height="330">
+          <figcaption class="cap">Il pezzo <b>mancante</b></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — Il Viaggio dell'Hardware -->
   <section class="s" data-label="Viaggio Hardware">
     <div class="hd">
       <h2 class="title">Il Viaggio dell'Hardware</h2>
