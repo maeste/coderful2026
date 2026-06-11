@@ -247,6 +247,17 @@
     text-shadow: 0 0 32px rgba(25,230,240,.5), 0 0 6px rgba(25,230,240,.6);
   }
 
+  /* ---------- demo stamp ---------- */
+  .demo-stamp {
+    position: absolute; top: 132px; right: 150px; z-index: 20;
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 64px; letter-spacing: .18em; color: var(--magenta);
+    border: 6px solid var(--magenta); border-radius: 14px;
+    padding: 8px 34px 14px; transform: rotate(-8deg);
+    text-transform: uppercase; background: rgba(255,59,99,.06);
+    box-shadow: 0 12px 34px rgba(255,59,99,.20);
+  }
+
   /* divider */
   section.divider { justify-content: center; }
   section.divider .big-ix {
@@ -665,7 +676,7 @@
           <p style="font-size:30px;line-height:1.4;color:var(--ink-soft)">Tutte e 3 le telecamere sul <strong>Bus USB 2.0 001</strong> condividono <strong>480 Mbps</strong>. Tre stream raw richiedono <strong>~830 Mbps</strong>.</p>
           <div class="lesson" style="margin-top:auto">
             <span class="lab">Soluzione</span>
-            <span class="txt" style="font-size:28px">MJPEG <b>a livello di telecamera</b> + distribuire le telecamere su controller USB separati.</span>
+            <span class="txt" style="font-size:28px">Distribuire le telecamere su <b>controller USB separati</b>.</span>
           </div>
         </div>
       </div>
@@ -686,11 +697,12 @@
             <p>Wayland blocca lo snooping globale della tastiera. Il listener di <span class="mono accent">pynput</span> fallisce in silenzio — niente comandi con le frecce durante la registrazione, e nessun errore.</p>
           </div>
           <div class="panel" style="flex:1">
-            <div class="panel-h">La nostra soluzione — stdin + SIGQUIT</div>
+            <div class="panel-h">La mia PR — stdin + SIGQUIT</div>
             <ul>
               <li><strong>Prompt stdin</strong> <span class="mono">[Y/n/q]</span> tra un episodio e l'altro</li>
               <li><strong>SIGQUIT</strong> (Ctrl+\) termina un episodio in anticipo</li>
               <li><strong>Zero</strong> nuovi thread</li>
+              <li><strong>Pynput funziona solo su X…</strong> e Wayland è in giro da un po'</li>
             </ul>
           </div>
         </div>
@@ -716,6 +728,7 @@ via SIGQUIT</pre>
 
   <!-- 11 — Registrazione degli Episodi -->
   <section class="s tint" data-label="Registrazione Episodi">
+    <span class="demo-stamp">Demo</span>
     <div class="hd">
       <h2 class="title">Registrazione degli Episodi</h2>
       <p class="dek">50 tentativi per afferrare un blocco rosso</p>
@@ -865,33 +878,17 @@ via SIGQUIT</pre>
     </div>
   </section>
 
-  <!-- 17 — Gli Strumenti che Abbiamo Costruito -->
-  <section class="s tint" data-label="Strumenti Costruiti">
+  <!-- 18pre — BUG #3 Causal Confounding (video) -->
+  <section class="s" data-label="Bug #3 — Causal Confounding (video)">
     <div class="hd">
-      <h2 class="title">Gli Strumenti che Abbiamo Costruito per la Diagnosi</h2>
-      <p class="dek">~600 righe di Python che hanno cambiato tutto</p>
+      <p class="eyebrow">Bug #3</p>
+      <h2 class="title">Causal Confounding</h2>
+      <p class="dek">La policy ha imparato a barare</p>
     </div>
     <div class="body">
-      <div class="cols c3">
-        <div class="panel" style="background:#fff">
-          <div class="panel-h mono" style="font-size:25px;color:var(--magenta)">compare_leader_follower</div>
-          <p>Statistiche di deriva per giunto tra i comandi del leader e le posizioni del follower, su ogni episodio.</p>
-          <p style="margin-top:auto;color:var(--indigo);font-weight:500">Ha trovato la deriva di <strong class="accent">17,5° su wrist_flex</strong>.</p>
-        </div>
-        <div class="panel" style="background:#fff">
-          <div class="panel-h mono" style="font-size:25px;color:var(--magenta)">evaluate_dataset_quality</div>
-          <p>Segnala gli episodi anomali in base a fluidità della traiettoria, tempistica del gripper e metriche di completamento.</p>
-          <p style="margin-top:auto;color:var(--indigo);font-weight:500">Ha individuato il <strong class="accent">12% di episodi corrotti</strong>.</p>
-        </div>
-        <div class="panel" style="background:#fff">
-          <div class="panel-h mono" style="font-size:25px;color:var(--magenta)">read_*_pos</div>
-          <p>Controllo statico di calibrazione — legge le posizioni dei giunti dal vivo, leader vs follower, in tempo reale.</p>
-          <p style="margin-top:auto;color:var(--indigo);font-weight:500">Verifica la calibrazione <strong class="accent">prima</strong> di registrare.</p>
-        </div>
-      </div>
-      <div class="lesson">
-        <span class="lab">Il punto</span>
-        <span class="txt">Non sono strumenti ML sofisticati — sono piccoli script. La parte difficile è <b>sapere dove guardare.</b></span>
+      <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center">
+        <video src="assets/recording.mp4" controls playsinline preload="metadata"
+               style="height:100%;max-height:100%;width:auto;max-width:100%;border-radius:8px;border:1px solid var(--line);background:#000;box-shadow:0 24px 60px rgba(30,18,63,.28)"></video>
       </div>
     </div>
   </section>
@@ -1034,6 +1031,26 @@ sharpness  : jitter</pre>
     </div>
   </section>
 
+  <!-- 23pre — Metriche di Training (grafici) -->
+  <section class="s" data-label="Metriche di Training (grafici)">
+    <div class="hd">
+      <h2 class="title">Leggere le Metriche di Training</h2>
+      <p class="dek">Cosa significa davvero <span class="mono">l1_loss</span> per il tuo robot</p>
+    </div>
+    <div class="body">
+      <div class="row" style="flex:1;align-items:center;gap:48px">
+        <figure class="grow" style="margin:0;display:flex;flex-direction:column;gap:16px;align-items:center">
+          <img src="assets/loss_convergence.png" alt="Curva di loss sull'intero training" style="width:100%;max-width:800px;height:auto;border-radius:6px;border:1px solid var(--line)">
+          <figcaption style="font-family:'Poppins',sans-serif;font-weight:600;font-size:27px;color:var(--ink-soft)">L'intera corsa: <b style="color:var(--magenta)">sembra perfetta</b></figcaption>
+        </figure>
+        <figure class="grow" style="margin:0;display:flex;flex-direction:column;gap:16px;align-items:center">
+          <img src="assets/low_loss.png" alt="Zoom sulla regione di convergenza della loss" style="width:100%;max-width:800px;height:auto;border-radius:6px;border:1px solid var(--line)">
+          <figcaption style="font-family:'Poppins',sans-serif;font-weight:600;font-size:27px;color:var(--ink-soft)">Zoom sul finale: <b style="color:var(--magenta)">scende ancora</b></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- 23 — Leggere le Metriche di Training -->
   <section class="s" data-label="Metriche di Training">
     <div class="hd">
@@ -1063,6 +1080,37 @@ sharpness  : jitter</pre>
       <div class="lesson">
         <span class="lab">Da ricordare</span>
         <span class="txt">Una loss "piccola" può comunque essere <b>fuori di centimetri</b> al gripper.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 — Gli Strumenti che Abbiamo Costruito (spostata dopo le Metriche) -->
+  <section class="s tint" data-label="Strumenti Costruiti">
+    <div class="hd">
+      <h2 class="title">Gli Strumenti che Abbiamo Costruito per la Diagnosi</h2>
+      <p class="dek">~600 righe di Python che hanno cambiato tutto</p>
+    </div>
+    <div class="body">
+      <div class="cols c3">
+        <div class="panel" style="background:#fff">
+          <div class="panel-h mono" style="font-size:25px;color:var(--magenta)">compare_leader_follower</div>
+          <p>Statistiche di deriva per giunto tra i comandi del leader e le posizioni del follower, su ogni episodio.</p>
+          <p style="margin-top:auto;color:var(--indigo);font-weight:500">Ha trovato la deriva di <strong class="accent">17,5° su wrist_flex</strong>.</p>
+        </div>
+        <div class="panel" style="background:#fff">
+          <div class="panel-h mono" style="font-size:25px;color:var(--magenta)">evaluate_dataset_quality</div>
+          <p>Segnala gli episodi anomali in base a fluidità della traiettoria, tempistica del gripper e metriche di completamento.</p>
+          <p style="margin-top:auto;color:var(--indigo);font-weight:500">Ha individuato il <strong class="accent">12% di episodi corrotti</strong>.</p>
+        </div>
+        <div class="panel" style="background:#fff">
+          <div class="panel-h mono" style="font-size:25px;color:var(--magenta)">read_*_pos</div>
+          <p>Controllo statico di calibrazione — legge le posizioni dei giunti dal vivo, leader vs follower, in tempo reale.</p>
+          <p style="margin-top:auto;color:var(--indigo);font-weight:500">Verifica la calibrazione <strong class="accent">prima</strong> di registrare.</p>
+        </div>
+      </div>
+      <div class="lesson">
+        <span class="lab">Il punto</span>
+        <span class="txt">Non sono strumenti ML sofisticati — sono piccoli script. La parte difficile è <b>sapere dove guardare.</b></span>
       </div>
     </div>
   </section>
