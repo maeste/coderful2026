@@ -338,6 +338,20 @@
     </div>
   </section>
 
+  <!-- 01b — VIDEO INTRO -->
+  <section class="s" data-label="Video Intro">
+    <div class="hd">
+      <h2 class="title">Cosa Aspettarsi in 30 Minuti</h2>
+    </div>
+    <div class="body">
+      <div class="yt-facade" data-yt="I44_zbEwz_w" data-title="Video introduttivo" style="flex:1;position:relative;border-radius:6px;overflow:hidden;background:#000;border:1px solid var(--line);cursor:pointer">
+        <img src="https://i.ytimg.com/vi/I44_zbEwz_w/maxresdefault.jpg" alt="Video introduttivo — youtu.be/I44_zbEwz_w" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span class="yt-play" aria-hidden="true"></span>
+        <span class="yt-tag mono">youtu.be/I44_zbEwz_w</span>
+      </div>
+    </div>
+  </section>
+
   <!-- 02 — AGENDA -->
   <section class="s" data-label="Agenda">
     <div class="hd">
@@ -987,7 +1001,7 @@ sharpness  : jitter</pre>
     </div>
     <div class="body">
       <div class="row" style="flex:1;align-items:stretch">
-        <div class="grow yt-facade" id="yt-demo" style="flex:1.5;position:relative;border-radius:6px;overflow:hidden;background:#000;border:1px solid var(--line);cursor:pointer">
+        <div class="grow yt-facade" data-yt="hs3DzuAmxSQ" data-start="4" data-title="Demo della presa del robot" style="flex:1.5;position:relative;border-radius:6px;overflow:hidden;background:#000;border:1px solid var(--line);cursor:pointer">
           <img src="https://i.ytimg.com/vi/hs3DzuAmxSQ/maxresdefault.jpg" alt="Demo della presa del robot — youtu.be/hs3DzuAmxSQ" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
           <span class="yt-play" aria-hidden="true"></span>
           <span class="yt-tag mono">youtu.be/hs3DzuAmxSQ</span>
@@ -1138,21 +1152,22 @@ sharpness  : jitter</pre>
 
 <script src="deck-stage.js"></script>
 <script>
-  // click-to-play: swap the facade for the real YouTube player on demand
+  // click-to-play: swap each facade for the real YouTube player on demand
   (function () {
-    var fc = document.getElementById('yt-demo');
-    if (!fc) return;
-    fc.addEventListener('click', function () {
-      var f = document.createElement('iframe');
-      f.src = 'https://www.youtube.com/embed/hs3DzuAmxSQ?start=4&rel=0&autoplay=1';
-      f.title = 'Demo della presa del robot';
-      f.setAttribute('style', 'position:absolute;inset:0;width:100%;height:100%;border:0');
-      f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-      f.setAttribute('allowfullscreen', '');
-      fc.innerHTML = '';
-      fc.style.cursor = 'default';
-      fc.appendChild(f);
-    }, { once: true });
+    document.querySelectorAll('.yt-facade[data-yt]').forEach(function (fc) {
+      fc.addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube.com/embed/' + fc.dataset.yt + '?rel=0&autoplay=1'
+          + (fc.dataset.start ? '&start=' + fc.dataset.start : '');
+        f.title = fc.dataset.title || 'Video';
+        f.setAttribute('style', 'position:absolute;inset:0;width:100%;height:100%;border:0');
+        f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        f.setAttribute('allowfullscreen', '');
+        fc.innerHTML = '';
+        fc.style.cursor = 'default';
+        fc.appendChild(f);
+      }, { once: true });
+    });
   })();
 </script>
 <script src="chrome.js"></script>
