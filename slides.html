@@ -226,6 +226,27 @@
   section.dark .flow .step .st-d { color: rgba(255,255,255,.7); }
   .flow .arr { align-self: center; color: var(--magenta); font-size: 40px; font-weight: 300; }
 
+  /* ---------- infinite star-wars crawl ---------- */
+  .crawl {
+    flex: 1; min-height: 0; position: relative;
+    perspective: 340px; perspective-origin: 50% 12%;
+    overflow: hidden;
+  }
+  .crawl::after {            /* fade the far distance into the void */
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background: linear-gradient(to top, transparent 24%, rgba(37,15,109,.55) 70%, var(--indigo) 95%);
+  }
+  .crawl-inner {
+    position: absolute; left: 50%; bottom: -40px; width: 1500px; margin-left: -750px;
+    transform: rotateX(62deg); transform-origin: 50% 100%; text-align: center;
+  }
+  .crawl-inner p {
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 96px; line-height: 1.22; letter-spacing: .015em;
+    color: var(--cyan); margin: 0;
+    text-shadow: 0 0 32px rgba(25,230,240,.5), 0 0 6px rgba(25,230,240,.6);
+  }
+
   /* divider */
   section.divider { justify-content: center; }
   section.divider .big-ix {
@@ -591,7 +612,7 @@
   </section>
 
   <!-- 08 — La Pipeline Software -->
-  <section class="s" data-label="Pipeline Software">
+  <section class="s dark" data-label="Pipeline Software">
     <div class="hd">
       <h2 class="title">La Pipeline Software</h2>
       <p class="dek">Sembra lineare. Ci girerai dentro decine di volte.</p>
@@ -606,33 +627,16 @@
         <span class="arr">&rarr;</span>
         <div class="step"><span class="st-h">Debug</span><span class="st-d">diagnostica, ripeti</span></div>
       </div>
-      <div class="cols c3">
-        <div class="panel">
-          <div class="panel-h">Trappole di registrazione</div>
-          <ul>
-            <li>3 telecamere USB = limite di banda</li>
-            <li>Wayland scombina l'ordine delle telecamere</li>
-            <li>MJPEG vs YUYV fa la differenza</li>
-            <li>Braccio leader nell'inquadratura = veleno</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <div class="panel-h">Vincoli di training</div>
-          <ul>
-            <li>La memoria GPU è il collo di bottiglia</li>
-            <li>Il tuning del batch-size è critico</li>
-            <li>2–4 ore per ogni run di training</li>
-            <li>Nessun early stopping di default</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <div class="panel-h">Loop di inferenza</div>
-          <ul>
-            <li>30 Hz = 33 ms per step</li>
-            <li>Lettura telecamera + modello + attuazione</li>
-            <li>Fallback su CPU = 8 Hz = fallimento</li>
-            <li>La lettura asincrona delle telecamere aiuta</li>
-          </ul>
+      <div class="crawl" aria-hidden="true">
+        <div class="crawl-inner">
+          <p>E ripeti…</p>
+          <p>e ripeti…</p>
+          <p>e ripeti…</p>
+          <p>e ripeti…</p>
+          <p>e ripeti…</p>
+          <p>e ripeti…</p>
+          <p>e ripeti…</p>
+          <p>e ripeti…</p>
         </div>
       </div>
     </div>
